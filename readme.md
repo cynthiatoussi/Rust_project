@@ -32,7 +32,7 @@
 
 ---
 
-### 🔹 4. Structure principale : `CompteBancaire`
+### 🔹 4. Structure principale : ex: `CompteBancaire`
 
 * Attributs : `nom` et `solde`
 * Méthodes :
@@ -86,26 +86,4 @@ match nombre {
 }
 ```
 
----
-
-### Compétences acquises:
-
-* Créer et manipuler des variables typées
-* Écrire et appeler des fonctions
-* Définir et utiliser des structures (`struct`)
-* Implémenter des méthodes avec `impl`
-* Maîtriser les notions de propriété, références et mutabilité
-* Manipuler des boucles, tableaux et vecteurs
-* Écrire un menu interactif simple
-* Utiliser le `match` pour des cas conditionnels
-
----
-
-### Conclusion
-
-Cette séance m'a permis d’acquérir une base solide en Rust, notamment :
-
-- Approche orientée objet avec `struct` + `impl`
-- Utilisation sécurisée de la mémoire (propriété, emprunt)
-- Manipulation de collections et contrôle du flux
 
