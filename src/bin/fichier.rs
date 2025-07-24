@@ -13,11 +13,11 @@ impl Fichier {
     fn creer(&self) {
         let chemin = Path::new(&self.nom);
         if chemin.exists() {
-            println!("Le fichier '{}' existe déjà.", self.nom);
+            println!("[ERREUR] Le fichier '{}' existe déjà.", self.nom);
         } else {
             match OpenOptions::new().write(true).create(true).open(&self.nom) {
-                Ok(_) => println!("✅ Fichier '{}' créé avec succès à {}", self.nom, Local::now()),
-                Err(e) => println!("❌ Erreur lors de la création : {}", e),
+                Ok(_) => println!("[OK] Fichier '{}' créé à {}", self.nom, Local::now()),
+                Err(e) => println!("[ERREUR] Création échouée : {}", e),
             }
         }
     }
@@ -29,16 +29,18 @@ impl Fichier {
         io::stdin().read_line(&mut contenu).unwrap();
 
         match fs::write(&self.nom, contenu) {
-            Ok(_) => println!("✍️ Écriture réussie dans '{}'", self.nom),
-            Err(e) => println!("❌ Erreur : {}", e),
+            Ok(_) => println!("[OK] Écriture réussie dans '{}'", self.nom),
+            Err(e) => println!("[ERREUR] Écriture échouée : {}", e),
         }
     }
 
     // Lit le contenu du fichier
     fn lire(&self) {
         match fs::read_to_string(&self.nom) {
-            Ok(data) => println!("📄 Contenu de '{}':\n{}", self.nom, data),
-            Err(e) => println!("❌ Erreur : {}", e),
+            Ok(data) => {
+                println!("[OK] Contenu de '{}':\n{}", self.nom, data);
+            }
+            Err(e) => println!("[ERREUR] Lecture échouée : {}", e),
         }
     }
 
@@ -51,27 +53,27 @@ impl Fichier {
         match OpenOptions::new().append(true).open(&self.nom) {
             Ok(mut fichier) => {
                 if let Err(e) = writeln!(fichier, "\n{}", ajout.trim()) {
-                    println!("❌ Erreur d'écriture : {}", e);
+                    println!("[ERREUR] Erreur d'écriture : {}", e);
                 } else {
-                    println!("✅ Modification réussie à {}", Local::now());
+                    println!("[OK] Modification réussie à {}", Local::now());
                 }
             }
-            Err(e) => println!("❌ Erreur : {}", e),
+            Err(e) => println!("[ERREUR] Ouverture échouée : {}", e),
         }
     }
 
     // Supprime définitivement le fichier
     fn supprimer(&self) {
         match fs::remove_file(&self.nom) {
-            Ok(_) => println!("🗑️ Fichier '{}' supprimé à {}", self.nom, Local::now()),
-            Err(e) => println!("❌ Erreur : {}", e),
+            Ok(_) => println!("[OK] Fichier '{}' supprimé à {}", self.nom, Local::now()),
+            Err(e) => println!("[ERREUR] Suppression échouée : {}", e),
         }
     }
 }
 
 // Fonction principale
 fn main() {
-    println!("🎯 Bienvenue dans le Gestionnaire de fichiers (Rust)");
+    println!("Bienvenue dans le Gestionnaire de fichiers (Rust)");
 
     loop {
         println!("\n--- MENU ---");
@@ -107,11 +109,11 @@ fn main() {
                 }
             }
             "0" => {
-                println!("👋 Au revoir !");
+                println!("Fin du programme. À bientôt.");
                 break;
             }
             _ => {
-                println!("❌ Choix invalide.");
+                println!("[ERREUR] Choix invalide.");
             }
         }
     }
