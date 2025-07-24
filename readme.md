@@ -1,4 +1,4 @@
-## Synthèse de la séance : Programmation en Rust
+## Synthèse de la séance 1: Programmation en Rust
 
 ### 🔹 1. Les bases du langage Rust
 
@@ -85,5 +85,23 @@ match nombre {
     _ => println!("Autre")
 }
 ```
+
+
+----------------------------------------------------------------------------------------------------------
+
+## Synthèse de la séance 2: Programmation en Rust
+
+Les notions suivantes ont été abordées :
+
+**Structures (`struct`)** : encapsulation des propriétés d’un fichier dans une structure `Fichier`.
+**Implémentation de méthodes (`impl`)** : toutes les opérations (créer, lire, écrire...) sont définies dans un bloc `impl` lié à la structure.
+**Gestion de l'ownership et du borrowing** : passage de `&self` dans les méthodes pour respecter le modèle d’ownership de Rust.
+**Utilisation de `match`, `loop`, `while`** : menu principal interactif basé sur des structures de contrôle.
+**Gestion des fichiers** avec `std::fs` et `OpenOptions`.
+**Utilisation de la bibliothèque `chrono`** : ajout de la date/heure aux opérations pour le suivi.
+**Manipulation de chemins de fichiers** : via `std::path::Path` pour vérifier l'existence.
+**Gestion des erreurs (`Result`, `match`)** : traitement propre des erreurs lors des lectures/écritures.
+
+
 
 
