@@ -102,6 +102,11 @@ Les notions suivantes ont été abordées :
 **Manipulation de chemins de fichiers** : via `std::path::Path` pour vérifier l'existence.
 **Gestion des erreurs (`Result`, `match`)** : traitement propre des erreurs lors des lectures/écritures.
 
-
-
-
+**Fonctions asynchrones (async fn) et await** : exécution non bloquante de tâches.
+**Macro #[tokio::main]** : transforme main() en fonction asynchrone avec le runtime Tokio.
+**Gestion des connexions TCP** : TcpListener::bind, TcpStream, accept().await.
+**Lecture asynchrone ligne par ligne** : via tokio::io::BufReader et .lines().await.
+**Partage de ressources entre tâches** : Arc<T> pour le comptage de références partagé.
+**Accès concurrent sécurisé** : tokio::sync::Mutex<T> pour protéger le fichier partagé.
+**Création de tâches concurrentes** : tokio::spawn(async move { ... }).
+**Formatage d’horodatage** : chrono::Utc::now().to_rfc3339().
