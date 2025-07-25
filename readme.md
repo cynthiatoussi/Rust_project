@@ -110,3 +110,81 @@ Les notions suivantes ont été abordées :
 **Accès concurrent sécurisé** : tokio::sync::Mutex<T> pour protéger le fichier partagé.
 **Création de tâches concurrentes** : tokio::spawn(async move { ... }).
 **Formatage d’horodatage** : chrono::Utc::now().to_rfc3339().
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+## Synthèse de la séance 3: Programmation en Rust
+
+
+## TP 7 : Serveur et Client DNS (UDP)
+
+### Objectif :
+
+Implémentation d'un client DNS qui envoie des requêtes pour résoudre un nom de domaine, et un serveur DNS simplifié qui répond avec une adresse IP codée en dur.
+
+### Fonctionnalités :
+
+* Envoi/réception de paquets DNS via UDP avec `tokio::net::UdpSocket`
+* Extraction du nom de domaine à partir du buffer binaire (RFC 1035)
+* Construction manuelle d'une réponse DNS binaire avec entête et réponse IP
+
+### Implémentation du code :
+
+on lance `server_dns_tp7.rs` avec la commande `cargo run --bin server_dns_tp7`
+
+![alt text](image-1.png)
+
+puis `client_dns_tp7.rs` avec la commande `cargo run --bin client_dns_tp7`
+
+![alt text](image.png)
+
+---
+
+##  TP 8 : Protocole personnalisé de messagerie (TCP)
+
+### Objectif :
+
+j'ai choisi de créer un protocole de messagerie au-dessus de TCP, avec un format JSON personnalisé contenant un expéditeur, un contenu et un horodatage.
+
+### Fonctionnalités :
+
+* Communication via `tokio::net::TcpStream` et `TcpListener`
+* Structure `Message` sérialisée avec `serde_json`
+* Gestion de plusieurs clients en tâches parallèles (serveur non bloquant)
+* Client interactif en ligne de commande avec pseudo
+
+### Implémentation du code :
+
+on lance `server_chat_tp8.rs` avec la commande `cargo run --bin server_chat_tp8`
+
+![alt text](image-3.png)
+
+puis `client_chat_tp8.rs` avec la commande `cargo run --bin client_chat_tp8`
+
+![alt text](image-2.png)
+
+---
+
+##  TP 9 : Messagerie WebSocket (Tokio + Tungstenite)
+
+### Objectif :
+
+Utilisation d'un serveur et d'un client WebSocket pour des communications full-duplex en temps réel, inspirées des chats modernes.
+
+### Fonctionnalités :
+
+* Serveur WebSocket avec `tokio-tungstenite`
+* Client WebSocket qui lit les entrées utilisateur et reçoit les messages du serveur
+* Splitting des flux (`read` / `write`) pour paralléliser l'envoi et la réception
+
+### Implementation du code :
+
+on lance `server_ws_tp9.rs` avec la commande `cargo run --bin server_ws_tp9`
+
+![alt text](image-5.png)
+
+puis `client_ws_tp9.rs` avec la commande `cargo run --bin client_ws_tp9`
+
+![alt text](image-4.png)
+
+---
